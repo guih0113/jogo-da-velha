@@ -23,6 +23,11 @@ export default function Board() {
     setXIsNext(!xIsNext);
 }
 
+  function handleReset() {
+    setSquares(Array(9).fill(null));
+    setXIsNext(true);
+  }
+
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
@@ -35,6 +40,12 @@ export default function Board() {
     <>
       <div className="h-screen flex justify-center items-center flex-col gap-3">
         <div className="font-sans text-xl">{status}</div>
+        <button
+          className="mb-2 px-4 py-2 bg-indigo-700 text-white rounded hover:bg-indigo-800 transition"
+          onClick={handleReset}
+        >
+          Resetar Jogo
+        </button>
         <div className="flex gap-3">
           <Square value={squares[0]} onSquareClick={() => handleClick(0)}/>
           <Square value={squares[1]} onSquareClick={() => handleClick(1)}/>
